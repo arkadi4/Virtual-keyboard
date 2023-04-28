@@ -7,6 +7,7 @@ let keyboardKeys = keyboardKeysEnglish
 
 const title = document.createElement('h1')
 title.textContent = 'Virtual keyboard'
+title.className = "title"
 let KeyBoardBlock = document.createElement('div')
 KeyBoardBlock.className = 'keyboard__block'
 let areaForText = document.createElement('textarea')
