@@ -8,19 +8,45 @@ let keyboardKeys = keyboardKeysEnglish
 const title = document.createElement('h1')
 title.textContent = 'Virtual keyboard'
 title.className = "title"
-let KeyBoardBlock = document.createElement('div')
-KeyBoardBlock.className = 'keyboard__block'
+
+let wrapperAreaForText = document.createElement('div')
+wrapperAreaForText.className = 'wrapper-area-for-text'
 let areaForText = document.createElement('textarea')
 areaForText.className = 'areaForText'
+
+let wrapperKeyBoardBlock = document.createElement('div')
+wrapperKeyBoardBlock.className = 'wrapper-keyboard__block'
+let KeyBoardBlock = document.createElement('div')
+KeyBoardBlock.className = 'keyboard__block'
 let rowOfKeyboard = ''
 
-document.body.prepend(title, areaForText, KeyBoardBlock)
+let wrapperForLanguageSwitching = document.createElement('div')
+wrapperForLanguageSwitching.className = "wrapper-for-language-switching"
+let textForLanguageSwitching = document.createElement('div')
+textForLanguageSwitching.className = "text-for-language-switching"
+
+
+let currentLanguage = 'English'
+localStorage.setItem("language", currentLanguage)
+textForLanguageSwitching.textContent = `Your current language is ${localStorage.getItem("language")}. \n
+If you want to change it press (Alt + Shift)\n
+or the button below`
+let buttonForLanguageSwitching = document.createElement("button")
+buttonForLanguageSwitching.className = "button-for-language-switching"
+buttonForLanguageSwitching.textContent = "Switch language"
+
+
+document.body.prepend(title, wrapperAreaForText, wrapperForLanguageSwitching, wrapperKeyBoardBlock)
+wrapperAreaForText.append(areaForText)
+wrapperForLanguageSwitching.append(textForLanguageSwitching, buttonForLanguageSwitching)
+wrapperKeyBoardBlock.append(KeyBoardBlock)
 
 const createKeyDiv = (obj) => {
     let temporaryDiv = document.createElement('div')
     temporaryDiv.className = 'key__block'
     let smallDiv = document.createElement('div')
-    smallDiv.textContent = obj.char
+    // smallDiv.textContent = obj.char
+    smallDiv.innerHTML = obj.char
     smallDiv.className = 'key__small'
     let bigDiv = document.createElement('div')
     bigDiv.textContent = obj.shift

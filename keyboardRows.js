@@ -1,3 +1,5 @@
+let downArrow = "&darr;"
+
 export let keyboardKeysEnglish = [
     [ {keycode: 'Backquote', char: '\`', shift: '\~', alternative: '\~'},
     {keycode: 'Digit1', char: '1', shift: '!'},
@@ -61,8 +63,8 @@ export let keyboardKeysEnglish = [
     {keycode: 'Space', char: '\ ', shift: '\ '},
     {keycode: 'AltRight', char: 'Alt', shift: 'Alt'},
     {keycode: 'ControlRight', char: 'Ctrl', shift: 'Ctrl'},
-    {keycode: 'ArrowLeft', char: '<-', shift: '<-'},
-    {keycode: 'ArrowDown', char: '|', shift: '|'}, 
+    {keycode: 'ArrowLeft', char: '&larr;', shift: '&larr;'},
+    {keycode: 'ArrowDown', char: downArrow , shift: "&darr;" }, 
     {keycode: 'ArrowRight', char: '->', shift: '->'}, ],
 ]
 
