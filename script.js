@@ -1,9 +1,13 @@
 console.log('YPA')
 
 import {keyboardKeysEnglish, keyboardKeysRussian} from './keyboardRows.js'
+let keyboardKeys
+if (localStorage.getItem("language") === "English") {
+    keyboardKeys = keyboardKeysEnglish
+} else {
+    keyboardKeys = keyboardKeysRussian
+}
 
-
-let keyboardKeys = keyboardKeysEnglish
 
 const title = document.createElement('h1')
 title.textContent = 'Virtual keyboard'
@@ -26,8 +30,8 @@ let textForLanguageSwitching = document.createElement('div')
 textForLanguageSwitching.className = "text-for-language-switching"
 
 
-let currentLanguage = "English"
-localStorage.setItem("language", currentLanguage)
+// let currentLanguage = "English"
+// localStorage.setItem("language", currentLanguage)
 
 textForLanguageSwitching.textContent = `Your current language is ${localStorage.getItem("language")}. \n
 If you want to change it press (Alt + Shift)\n
