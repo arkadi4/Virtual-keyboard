@@ -74,7 +74,7 @@ const createKeyDiv = (obj) => {
     smallDiv.innerHTML = obj.char
     smallDiv.className = 'key__small'
     let bigDiv = document.createElement('div')
-    bigDiv.textContent = obj.shift
+    bigDiv.innerHTML = obj.shift
     bigDiv.className = 'key__shift'
     bigDiv.classList.add('hidden')
     temporaryDiv.dataset.keyToCompare = obj.keycode
@@ -110,14 +110,23 @@ const paintKeyOnKeydown = () => {
     document.addEventListener('keydown', (event) => {
         KeyboardKeysOnBoard = document.querySelectorAll('.key__block')
         KeyboardKeysOnBoard.forEach(element => {
-            if (event.code == element.dataset.keyToCompare) {
+            if (  (event.code == element.dataset.keyToCompare) && (!element.dataset.specialButton)  ) {
                 element.classList.add('colored')
                 if (event.shiftKey) {
                     areaForText.textContent += `${element.lastChild.textContent}`
                 } else {
                     areaForText.textContent += `${element.firstChild.textContent}`
                 }
-                
+            } else if (  (event.code == element.dataset.keyToCompare) && 
+                                (element.dataset.keyToCompare == "ShiftLeft")  ) {
+                                    element.classList.add('colored')
+            } else if (  (event.code == element.dataset.keyToCompare) && 
+                                (element.dataset.keyToCompare == "CapsLock")  ) {
+                                    element.classList.add('colored')
+                                    // KeyboardKeysOnBoardSmall.forEach( el => el.classList.add('hidden') )
+                                    // KeyboardKeysOnBoardShift.forEach( el => el.classList.remove('hidden') )
+                                    KeyboardKeysOnBoardSmall.forEach( el => el.classList.toggle('hidden') )
+                                    KeyboardKeysOnBoardShift.forEach( el => el.classList.toggle('hidden') )
             }
         })
     })
@@ -133,16 +142,17 @@ const paintKeyOnKeydown = () => {
 paintKeyOnKeydown()
 
 document.addEventListener('keydown', (event) => {
-    if (event.shiftKey) {
-        KeyboardKeysOnBoardSmall.forEach( el => el.classList.remove('hidden') )
-        KeyboardKeysOnBoardShift.forEach( el => el.classList.add('hidden') )
+    console.log("event.code", event.code)
+    if (event.code === "ShiftLeft") {
+        KeyboardKeysOnBoardSmall.forEach( el => el.classList.add('hidden') )
+        KeyboardKeysOnBoardShift.forEach( el => el.classList.remove('hidden') )
     }
 })
 
 document.addEventListener('keyup', (event) => {
-    if (event.shiftKey) {
-        KeyboardKeysOnBoardSmall.forEach( el => el.classList.add('hidden') )
-        KeyboardKeysOnBoardShift.forEach( el => el.classList.remove('hidden') )
+    if (event.code === "ShiftLeft") {
+        KeyboardKeysOnBoardSmall.forEach( el => el.classList.remove('hidden') )
+        KeyboardKeysOnBoardShift.forEach( el => el.classList.add('hidden') )
     }
 })
 
@@ -165,15 +175,15 @@ function runOnKeys(func, ...codes) {
 
 
 
-const shiftPushed = () => {
+// const shiftPushed = () => {
 
-        console.log('ShiftLeft pushed')
-        KeyboardKeysOnBoardSmall = document.querySelectorAll('.key__small')
-        KeyboardKeysOnBoardShift = document.querySelectorAll('.key__shift')
-        KeyboardKeysOnBoardSmall.forEach( el => el.classList.add('hidden') )
-        KeyboardKeysOnBoardShift.forEach( el => el.classList.remove('hidden') )
-}
-runOnKeys( () => shiftPushed(), "ShiftLeft");
+//         console.log('ShiftLeft pushed')
+//         KeyboardKeysOnBoardSmall = document.querySelectorAll('.key__small')
+//         KeyboardKeysOnBoardShift = document.querySelectorAll('.key__shift')
+//         KeyboardKeysOnBoardSmall.forEach( el => el.classList.add('hidden') )
+//         KeyboardKeysOnBoardShift.forEach( el => el.classList.remove('hidden') )
+// }
+// runOnKeys( () => shiftPushed(), "ShiftLeft");
 
 
 let printOnClickInTextarea = () => {
