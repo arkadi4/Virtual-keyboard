@@ -123,11 +123,22 @@ const paintKeyOnKeydown = () => {
             } else if (  (event.code == element.dataset.keyToCompare) && 
                                 (element.dataset.keyToCompare == "CapsLock")  ) {
                                     element.classList.add('colored')
-                                    // KeyboardKeysOnBoardSmall.forEach( el => el.classList.add('hidden') )
-                                    // KeyboardKeysOnBoardShift.forEach( el => el.classList.remove('hidden') )
                                     KeyboardKeysOnBoardSmall.forEach( el => el.classList.toggle('hidden') )
                                     KeyboardKeysOnBoardShift.forEach( el => el.classList.toggle('hidden') )
+            } else if (  (event.code == element.dataset.keyToCompare) && 
+                                (element.dataset.keyToCompare == "Backspace")  ) {
+                element.classList.add('colored')
+                areaForText.textContent = areaForText.textContent.slice(0, -1)
+            } else if (  (event.code == element.dataset.keyToCompare) && 
+                            (element.dataset.keyToCompare == "Tab")  ) {
+                element.classList.add('colored')
+                areaForText.textContent = areaForText.textContent + "\t"
+            } else if (  (event.code == element.dataset.keyToCompare) && 
+                            (element.dataset.keyToCompare == "Enter")  ) {
+                element.classList.add('colored')
+                areaForText.textContent = areaForText.textContent + "\n"
             }
+            
         })
     })
     document.addEventListener('keyup', (event) => {
