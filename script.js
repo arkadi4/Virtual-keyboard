@@ -175,7 +175,6 @@ const shiftPushed = () => {
 }
 runOnKeys( () => shiftPushed(), "ShiftLeft");
 
-// let KeysOnKeyboard = document.querySelectorAll('.key__block')
 
 let printOnClickInTextarea = () => {
 
@@ -193,9 +192,12 @@ let printOnClickInTextarea = () => {
                     areaForText.textContent = areaForText.textContent + "\t"
                 }
                 if (event.target.closest(".key__block").dataset.keyToCompare === "Backspace") {
-                    console.log('areaForText.textContent', areaForText.textContent)
+                    // console.log('areaForText.textContent', areaForText.textContent)
                     areaForText.textContent = areaForText.textContent.slice(0, -1)
                 }
+                // if (event.target.closest(".key__block").dataset.keyToCompare === "CapsLock") {
+                //     areaForText.textContent = areaForText.textContent + "\t"
+                // }
             } else {
                 areaForText.textContent = areaForText.textContent + `${event.target.textContent}`
             }
